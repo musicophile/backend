@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken");
 // require database connection
 const dbConnect = require("./db/dbConnect");
 const User = require("./db/userModel");
+const Task = require("./db/taskModel");
 const auth = require("./auth");
 
 // execute database connection
@@ -72,6 +73,38 @@ app.post("/register", (request, response) => {
         e,
       });
     });
+});
+
+//task endpoint
+app.post("/registertTask", (request, response) => {
+  
+ 
+      // create a new task instance and collect the data
+      const task = new Task({
+        tas_name: request.body.task_name,
+        description: request.body.description,
+        priority: request.body.priority,
+      });
+
+      // save the new user
+      task
+        .save()
+        // return success if the new user is added to the database successfully
+        .then((result) => {
+          response.status(201).send({
+            message: "Task Created Successfully",
+            result,
+          });
+        })
+        // catch erroe if the new user wasn't added successfully to the database
+        .catch((error) => {
+          response.status(500).send({
+            message: "Error creating Task",
+            error,
+          });
+        });
+    
+    
 });
 
 // login endpoint
