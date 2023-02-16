@@ -109,7 +109,7 @@ app.post("/registertTask", (request, response) => {
 
 
 //fetch task endpoint
-app.post("/fetchTask", ( response) => {
+app.get("/fetchTask", ( request, response) => {
   
  
   // // create a new task instance and collect the data
