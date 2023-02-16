@@ -16,6 +16,11 @@ const TaskSchema = new mongoose.Schema({
   priority: {
     type: String,
   },
+
+    //   status field
+    status: {
+        type: String,
+      },
 });
 
 // export TaskSchema
