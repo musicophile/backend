@@ -81,7 +81,7 @@ app.post("/registertTask", (request, response) => {
  
       // create a new task instance and collect the data
       const task = new Task({
-        tas_name: request.body.task_name,
+        taskname: request.body.taskname,
         description: request.body.description,
         priority: request.body.priority,
       });

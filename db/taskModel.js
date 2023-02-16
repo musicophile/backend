@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 // task schema
 const TaskSchema = new mongoose.Schema({
   // task_name field
-  task_name: {
+  taskname: {
     type: String,
   },
 
