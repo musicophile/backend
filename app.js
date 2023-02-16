@@ -86,7 +86,7 @@ app.post("/registertTask", (request, response) => {
         priority: request.body.priority,
       });
 
-      // save the new user
+      // save the new task
       task
         .save()
         // return success if the new user is added to the database successfully
