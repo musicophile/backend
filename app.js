@@ -121,7 +121,7 @@ app.get("/fetchTask", ( request, response) => {
 
   // save the new task
   Task
-    .get()
+    .find()
     // return success if the new user is added to the database successfully
     .then((result) => {
       response.status(201).send({
