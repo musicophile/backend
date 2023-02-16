@@ -107,6 +107,40 @@ app.post("/registertTask", (request, response) => {
     
 });
 
+
+//fetch task endpoint
+app.post("/fetchTask", ( response) => {
+  
+ 
+  // // create a new task instance and collect the data
+  // const task = new Task({
+  //   taskname: request.body.taskname,
+  //   description: request.body.description,
+  //   priority: request.body.priority,
+  // });
+
+  // save the new task
+  Task
+    .get()
+    // return success if the new user is added to the database successfully
+    .then((result) => {
+      response.status(201).send({
+        message: "Task fetched Successfully",
+        result,
+      });
+    })
+    // catch erroe if the new user wasn't added successfully to the database
+    .catch((error) => {
+      response.status(500).send({
+        message: "Error creating Task",
+        error,
+      });
+    });
+
+
+});
+
+
 // login endpoint
 app.post("/login", (request, response) => {
   // check if email exists
