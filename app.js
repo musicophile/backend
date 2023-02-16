@@ -84,7 +84,7 @@ app.post("/registertTask", (request, response) => {
         taskname: request.body.taskname,
         description: request.body.description,
         priority: request.body.priority,
-        status: request.body.status,
+        status: "Incomplete",
       });
 
       // save the new task
