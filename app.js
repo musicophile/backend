@@ -125,6 +125,7 @@ app.post("/invite", (request, response) => {
     c_email: request.body.c_email,
     email: request.body.email,
     id: request.body.id,
+    taskname: request.body.taskname,
   });
 
   // save the new task
