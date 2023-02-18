@@ -216,6 +216,7 @@ app.post("/login", (request, response) => {
             message: "Login Successful",
             email: user.email,
             token,
+            passwordCheck,
           });
         })
         // catch error if password do not match
