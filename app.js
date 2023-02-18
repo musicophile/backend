@@ -165,7 +165,7 @@ app.post("/fetchTask", ( request, response) => {
     { $lookup:
         {
            from: "invite",
-           localField: "c_email",
+           localField: "email",
            foreignField: "email",
            as: "taskname"
         }
