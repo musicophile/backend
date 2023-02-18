@@ -161,33 +161,44 @@ app.post("/fetchTask", ( request, response) => {
   // });
 
   // save the new task
+  Task.aggregate([
+    { $lookup:
+        {
+           from: "invite",
+           localField: "c_email",
+           foreignField: "email",
+           as: "taskname"
+        }
+    }
+]).then((result) => {
+  response.status(201).send({
+    message: "Task fetched Successfully",
+    result,
+  });
+})
+// catch erroe if the new user wasn't added successfully to the database
+.catch((error) => {
+  response.status(500).send({
+    message: "Error creating Task",
+    error,
+  });
+});
   // Task
-  // .find({"email":request.body.email})
-  // // return success if the new user is added to the database successfully
-  // .then((result) => {
-  //   response.status(201).send({
-  //     message: "Task fetched Successfully",
-  //     result,
+  //   .find({"email":request.body.email})
+  //   // return success if the new user is added to the database successfully
+  //   .then((result) => {
+  //     response.status(201).send({
+  //       message: "Task fetched Successfully",
+  //       result,
+  //     });
+  //   })
+  //   // catch erroe if the new user wasn't added successfully to the database
+  //   .catch((error) => {
+  //     response.status(500).send({
+  //       message: "Error creating Task",
+  //       error,
+  //     });
   //   });
-  // })
-  Task
-    .find().array.forEach(element => {
-      Invite.find({"email":element.email}). then((result) => {
-        response.status(201).send({
-          message: "Task fetched Successfully",
-          result,
-        });
-      })
-      // catch erroe if the new user wasn't added successfully to the database
-      .catch((error) => {
-        response.status(500).send({
-          message: "Error creating Task",
-          error,
-        });
-      });
-    });
-    // return success if the new user is added to the database successfully
-   
 
 
 });
