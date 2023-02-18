@@ -142,7 +142,7 @@ app.get("/fetchTask", ( request, response) => {
 });
 
 //fetch task endpoint
-app.get("/fetchTaskById", ( request, response) => {
+app.post("/fetchTaskById", ( request, response) => {
   
  
   // // create a new task instance and collect the data
