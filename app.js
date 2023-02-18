@@ -160,7 +160,7 @@ app.post("/fetchTaskById", ( request, response) => {
     // return success if the new user is added to the database successfully
     .then((result) => {
       response.status(201).send({
-        message: "Task fetched Successfully"+request,
+        message: "Task fetched Successfully",
         result,
         request,
       });
@@ -168,8 +168,9 @@ app.post("/fetchTaskById", ( request, response) => {
     // catch erroe if the new user wasn't added successfully to the database
     .catch((error) => {
       response.status(500).send({
-        message: "Error creating Task"+request,
+        message: "Error creating Task",
         error,
+        request,
       });
     });
 
