@@ -89,6 +89,8 @@ app.post("/registertTask", (request, response) => {
         description: request.body.description,
         priority: request.body.priority,
         status: "Incomplete",
+        id: request.body.id,
+        email: request.body.email,
       });
 
       // save the new task
@@ -217,7 +219,7 @@ app.post("/login", (request, response) => {
             email: user.email,
             token,
             name : user.name,
-            
+
           });
         })
         // catch error if password do not match

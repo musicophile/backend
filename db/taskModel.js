@@ -23,7 +23,12 @@ const TaskSchema = new mongoose.Schema({
       },
 
         //   status field
-    _id: {
+    id: {
+        type: String,
+      },
+
+           //   status field
+    email: {
         type: String,
       },
 });
