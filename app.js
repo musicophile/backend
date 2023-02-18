@@ -154,14 +154,7 @@ app.post("/invite", (request, response) => {
 app.post("/fetchTask", ( request, response) => {
   
  
-  // // create a new task instance and collect the data
-  // const task = new Task({
-  //   taskname: request.body.taskname,
-  //   description: request.body.description,
-  //   priority: request.body.priority,
-  // });
 
-  // save the new task
   
   Task
     .find({"email":request.body.email})
@@ -169,6 +162,31 @@ app.post("/fetchTask", ( request, response) => {
     .then((result) => {
       response.status(201).send({
         message: "Task fetched Successfully",
+        result,
+      });
+    })
+    // catch erroe if the new user wasn't added successfully to the database
+    .catch((error) => {
+      response.status(500).send({
+        message: "Error creating Task",
+        error,
+      });
+    });
+
+
+});
+
+app.post("/fetchInviteTask", ( request, response) => {
+  
+ 
+
+  
+  Invite
+    .find({"email":request.body.email})
+    // return success if the new user is added to the database successfully
+    .then((result) => {
+      response.status(201).send({
+        message: "Invite fetched Successfully",
         result,
       });
     })
