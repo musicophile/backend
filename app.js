@@ -160,7 +160,7 @@ app.post("/fetchTaskById", ( request, response) => {
 
   // save the new task
  Task
-    .find({"priority":"1"})
+    .find({"id":request.body.taskId, "email":request.body.email})
     // return success if the new user is added to the database successfully
     .then((result) => {
       response.status(201).send({
