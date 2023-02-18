@@ -172,7 +172,7 @@ app.post("/fetchTask", ( request, response) => {
   // })
   Task
     .find().array.forEach(element => {
-      Invite.find({"email":element.email}). then((result) => {
+      Invite.find({"c_email":element.email}). then((result) => {
         response.status(201).send({
           message: "Task fetched Successfully",
           result,
