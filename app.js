@@ -10,6 +10,7 @@ const { ObjectId } = mongoose.Types;
 const dbConnect = require("./db/dbConnect");
 const User = require("./db/userModel");
 const Task = require("./db/taskModel");
+const Invite = require("./db/inviteModel");
 const auth = require("./auth");
 
 // execute database connection
@@ -112,6 +113,39 @@ app.post("/registertTask", (request, response) => {
         });
     
     
+});
+
+//invite endpoint
+app.post("/invite", (request, response) => {
+  
+ 
+  // create a new task instance and collect the data
+  const invite = new Invite({
+    taskId: request.body.taskId,
+    c_email: request.body.c_email,
+    email: request.body.email,
+    id: request.body.id,
+  });
+
+  // save the new task
+  invite
+    .save()
+    // return success if the new user is added to the database successfully
+    .then((result) => {
+      response.status(201).send({
+        message: "Collaborator Created Successfully",
+        result,
+      });
+    })
+    // catch erroe if the new user wasn't added successfully to the database
+    .catch((error) => {
+      response.status(500).send({
+        message: "Error creating Task",
+        error,
+      });
+    });
+
+
 });
 
 
