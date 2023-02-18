@@ -162,7 +162,7 @@ app.get("/fetchTask", ( request, response) => {
 
   // save the new task
   Task
-    .find()
+    .find({"email":request.body.email})
     // return success if the new user is added to the database successfully
     .then((result) => {
       response.status(201).send({
