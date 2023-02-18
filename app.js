@@ -3,7 +3,8 @@ const app = express();
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-
+import mongoose from 'mongoose';
+const { ObjectId } = mongoose.Types;
 // require database connection
 const dbConnect = require("./db/dbConnect");
 const User = require("./db/userModel");
@@ -154,7 +155,7 @@ app.post("/fetchTaskById", ( request, response) => {
 
   // save the new task
   Task
-    .find({_id : request.body.taskId})
+    .find({_id : ObjectId(request.body.taskId)})
     // return success if the new user is added to the database successfully
     .then((result) => {
       response.status(201).send({
