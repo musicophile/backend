@@ -1,9 +1,10 @@
+const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-import mongoose from 'mongoose';
+
 const { ObjectId } = mongoose.Types;
 // require database connection
 const dbConnect = require("./db/dbConnect");
