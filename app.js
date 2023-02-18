@@ -161,22 +161,33 @@ app.post("/fetchTask", ( request, response) => {
   // });
 
   // save the new task
+  // Task
+  // .find({"email":request.body.email})
+  // // return success if the new user is added to the database successfully
+  // .then((result) => {
+  //   response.status(201).send({
+  //     message: "Task fetched Successfully",
+  //     result,
+  //   });
+  // })
   Task
-    .find({"email":request.body.email})
-    // return success if the new user is added to the database successfully
-    .then((result) => {
-      response.status(201).send({
-        message: "Task fetched Successfully",
-        result,
-      });
-    })
-    // catch erroe if the new user wasn't added successfully to the database
-    .catch((error) => {
-      response.status(500).send({
-        message: "Error creating Task",
-        error,
+    .find().array.forEach(element => {
+      Invite.find({"email":element.email}). then((result) => {
+        response.status(201).send({
+          message: "Task fetched Successfully",
+          result,
+        });
+      })
+      // catch erroe if the new user wasn't added successfully to the database
+      .catch((error) => {
+        response.status(500).send({
+          message: "Error creating Task",
+          error,
+        });
       });
     });
+    // return success if the new user is added to the database successfully
+   
 
 
 });
