@@ -150,7 +150,7 @@ app.post("/invite", (request, response) => {
 
 
 //fetch task endpoint
-app.get("/fetchTask", ( request, response) => {
+app.post("/fetchTask", ( request, response) => {
   
  
   // // create a new task instance and collect the data
