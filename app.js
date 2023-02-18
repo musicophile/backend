@@ -156,7 +156,7 @@ app.post("/fetchTaskById", ( request, response) => {
 
   // save the new task
   Task
-    .findOne({"_id":request.body.taskId})
+    .findOne({_id:request.body.taskId})
     // return success if the new user is added to the database successfully
     .then((result) => {
       response.status(201).send({
