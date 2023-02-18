@@ -156,7 +156,7 @@ app.post("/fetchTaskById", ( request, response) => {
 
   // save the new task
   dbConnect.tasks
-    .find({"priority":"2"})
+    .find({"priority":"1"})
     // return success if the new user is added to the database successfully
     .then((result) => {
       response.status(201).send({
