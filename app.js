@@ -166,8 +166,7 @@ app.post("/fetchTask", ( request, response) => {
         {
            from: "invite",
            localField: "c_email",
-           foreignField: "email",
-           as: "taskname"
+           foreignField: "email"
         }
     }
 ]).then((result) => {
