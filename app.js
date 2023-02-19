@@ -120,30 +120,38 @@ app.post("/registertTask", (request, response) => {
 app.post("/updateTask", (request, response) => {
   
 
-
-  // const updateDoc = {
-  //   $set: {
-  //     // specify the fields you want to update and their new values
-  //     description:request.body.taskDescription},
-  //     // ...
-  //   }
-  
-
-  // collection.updateOne({ _id: id }, updateDoc)
-  //   .then(result => {
-  //     console.log(`Updated ${result.modifiedCount} document(s)`);
-  //     client.close();
-  //   })
-  //   .catch(err => {
-  //     console.error(err);
-  //     client.close();
-  //   });
-
   
  
   // save the new task
   Task
     .updateOne({"id":request.body.taskId, "email":request.body.taskemail}, {"description": request.body.taskDescription})
+    // return success if the new user is added to the database successfully
+    .then((result) => {
+      response.status(201).send({
+        message: "Task Updated Successfully",
+        result,
+      });
+    })
+    // catch erroe if the new user wasn't added successfully to the database
+    .catch((error) => {
+      response.status(500).send({
+        message: "Error creating Task",
+        error,
+      });
+    });
+
+
+});
+
+app.post("/editTask", (request, response) => {
+  
+
+  
+ 
+  // save the new task
+  Task
+    .updateOne({"id":request.body.taskId, "email":request.body.taskemail}, {"description": request.body.description,
+    "taskname":request.body.taskname, "status":request.body.status,"priority":request.body.priority})
     // return success if the new user is added to the database successfully
     .then((result) => {
       response.status(201).send({
