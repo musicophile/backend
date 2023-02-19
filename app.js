@@ -119,12 +119,31 @@ app.post("/registertTask", (request, response) => {
 //task endpoint
 app.post("/updateTask", (request, response) => {
   
+
+
+  // const updateDoc = {
+  //   $set: {
+  //     // specify the fields you want to update and their new values
+  //     description:req.body.taskDescription},
+  //     // ...
+  //   }
+  
+
+  // collection.updateOne({ _id: id }, updateDoc)
+  //   .then(result => {
+  //     console.log(`Updated ${result.modifiedCount} document(s)`);
+  //     client.close();
+  //   })
+  //   .catch(err => {
+  //     console.error(err);
+  //     client.close();
+  //   });
+
+  
  
-
-
   // save the new task
   Task
-    .findOneAndUpdate({"id":request.body.taskId, "email":request.body.taskemail}, {"description": req.body.taskDescription},{new: true})
+    .updateOne({"id":request.body.taskId, "email":request.body.taskemail}, {"description": req.body.taskDescription},{new: true})
     // return success if the new user is added to the database successfully
     .then((result) => {
       response.status(201).send({
@@ -146,7 +165,10 @@ app.post("/updateTask", (request, response) => {
 //invite endpoint
 app.post("/invite", (request, response) => {
   
- 
+
+
+
+
   // create a new task instance and collect the data
   const invite = new Invite({
     taskId: request.body.taskId,
