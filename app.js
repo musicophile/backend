@@ -115,6 +115,34 @@ app.post("/registertTask", (request, response) => {
     
 });
 
+
+//task endpoint
+app.post("/updateTask", (request, response) => {
+  
+ 
+
+
+  // save the new task
+  Task
+    .findOneAndUpdate({"id":request.body.taskId, "email":request.body.taskemail}, {"description": req.body.taskDescription},{new: true})
+    // return success if the new user is added to the database successfully
+    .then((result) => {
+      response.status(201).send({
+        message: "Task Updated Successfully",
+        result,
+      });
+    })
+    // catch erroe if the new user wasn't added successfully to the database
+    .catch((error) => {
+      response.status(500).send({
+        message: "Error creating Task",
+        error,
+      });
+    });
+
+
+});
+
 //invite endpoint
 app.post("/invite", (request, response) => {
   
