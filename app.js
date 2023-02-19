@@ -124,7 +124,7 @@ app.post("/updateTask", (request, response) => {
   // const updateDoc = {
   //   $set: {
   //     // specify the fields you want to update and their new values
-  //     description:req.body.taskDescription},
+  //     description:request.body.taskDescription},
   //     // ...
   //   }
   
