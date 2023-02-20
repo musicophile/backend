@@ -150,7 +150,7 @@ app.post("/updateTaskStatus", (request, response) => {
  
   // save the new task
   Task
-    .updateOne({"id":request.body.taskId, "email":request.body.taskemail}, {"status": request.body.status})
+    .updateOne({"id":request.body.taskId, "email":request.body.taskemail}, {"status": request.body.newstatus})
     // return success if the new user is added to the database successfully
     .then((result) => {
       response.status(201).send({
