@@ -311,6 +311,31 @@ app.post("/fetchInviteTaskBysearch", ( request, response) => {
 
 });
 
+app.post("/fetchInviteTask", ( request, response) => {
+  
+ 
+
+  
+  Invite
+    .find({"email":request.body.email})
+    // return success if the new user is added to the database successfully
+    .then((result) => {
+      response.status(201).send({
+        message: "Invite fetched Successfully",
+        result,
+      });
+    })
+    // catch erroe if the new user wasn't added successfully to the database
+    .catch((error) => {
+      response.status(500).send({
+        message: "Error creating Task",
+        error,
+      });
+    });
+
+
+});
+
 //fetch task endpoint
 app.post("/fetchTaskById", ( request, response) => {
   
