@@ -143,6 +143,32 @@ app.post("/updateTask", (request, response) => {
 
 });
 
+app.post("/updateTaskStatus", (request, response) => {
+  
+
+  
+ 
+  // save the new task
+  Task
+    .updateOne({"id":request.body.taskId, "email":request.body.taskemail}, {"status": request.body.newstatus})
+    // return success if the new user is added to the database successfully
+    .then((result) => {
+      response.status(201).send({
+        message: "Task Updated Successfully",
+        result,
+      });
+    })
+    // catch erroe if the new user wasn't added successfully to the database
+    .catch((error) => {
+      response.status(500).send({
+        message: "Error creating Task",
+        error,
+      });
+    });
+
+
+});
+
 app.post("/editTask", (request, response) => {
   
 
