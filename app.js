@@ -260,13 +260,39 @@ app.post("/fetchTask", ( request, response) => {
 
 });
 
-app.post("/fetchInviteTask", ( request, response) => {
+//fetch task endpoint
+app.post("/fetchTaskBysearch", ( request, response) => {
+  
+ 
+
+  
+  Task
+    .find({"email":request.body.email, taskname: "/"+request.body.search+"/i"})
+    // return success if the new user is added to the database successfully
+    .then((result) => {
+      response.status(201).send({
+        message: "Task fetched Successfully",
+        result,
+      });
+    })
+    // catch erroe if the new user wasn't added successfully to the database
+    .catch((error) => {
+      response.status(500).send({
+        message: "Error creating Task",
+        error,
+      });
+    });
+
+
+});
+
+app.post("/fetchInviteTaskBysearch", ( request, response) => {
   
  
 
   
   Invite
-    .find({"email":request.body.email})
+    .find({"email":request.body.email, taskname: "/"+request.body.search+"/i"})
     // return success if the new user is added to the database successfully
     .then((result) => {
       response.status(201).send({
